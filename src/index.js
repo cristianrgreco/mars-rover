@@ -1,3 +1,4 @@
+const chunk = require("./chunk");
 const MarsRoverBuilder = require("./mars-rover-builder");
 
 const testInput = `
@@ -26,25 +27,6 @@ function startRovers(input) {
 
     console.log(roverLocation);
   });
-}
-
-function chunk(array, chunkSize) {
-  const chunks = [];
-
-  let chunkIndex = 0;
-
-  for (let i = 0; i < array.length; i++) {
-    const value = array[i];
-
-    if (i % chunkSize === 0) {
-      chunkIndex++;
-      chunks[chunkIndex] = [value];
-    } else {
-      chunks[chunkIndex].push(value);
-    }
-  }
-
-  return chunks;
 }
 
 startRovers(testInput);
