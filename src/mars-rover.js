@@ -26,8 +26,8 @@ module.exports = class MarsRover {
     return `${this._location.x} ${this._location.y} ${this._direction}`;
   }
 
-  _turn(direction) {
-    const newDirection = nextDirection(this._direction, direction);
+  _turn(rotation) {
+    const newDirection = nextDirection(this._direction, rotation);
     return new MarsRover(this._grid, newDirection, this._location);
   }
 
