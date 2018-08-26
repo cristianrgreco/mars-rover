@@ -2,9 +2,7 @@
   "name": "mars-rover",
   "version": "1.0.0",
   "description": "",
-  "main": "src/index.js",
   "scripts": {
-    "start": "node src",
     "test": "jest",
     "format": "prettier --write src/**/*.js"
   },

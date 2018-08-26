@@ -1,18 +1,25 @@
-const nextDirection = require("./direction");
-const { NORTH, SOUTH, EAST, WEST, LEFT, RIGHT } = require("./constants");
+const Direction = require("./direction");
 
-describe("nextDirection", () => {
-  it("should return the resulting direction", () => {
-    expect(nextDirection(NORTH, RIGHT)).toBe(EAST);
-    expect(nextDirection(NORTH, LEFT)).toBe(WEST);
+const { NORTH, SOUTH, EAST, WEST, TURN_LEFT, TURN_RIGHT } = require("./constants");
 
-    expect(nextDirection(SOUTH, RIGHT)).toBe(WEST);
-    expect(nextDirection(SOUTH, LEFT)).toBe(EAST);
+describe("Direction", () => {
+  it("should rotate from North", () => {
+    expect(new Direction(NORTH).turn(TURN_RIGHT).getDirection()).toBe(EAST);
+    expect(new Direction(NORTH).turn(TURN_LEFT).getDirection()).toBe(WEST);
+  });
 
-    expect(nextDirection(EAST, RIGHT)).toBe(SOUTH);
-    expect(nextDirection(EAST, LEFT)).toBe(NORTH);
+  it("should rotate from South", () => {
+    expect(new Direction(SOUTH).turn(TURN_RIGHT).getDirection()).toBe(WEST);
+    expect(new Direction(SOUTH).turn(TURN_LEFT).getDirection()).toBe(EAST);
+  });
 
-    expect(nextDirection(WEST, RIGHT)).toBe(NORTH);
-    expect(nextDirection(WEST, LEFT)).toBe(SOUTH);
+  it("should rotate from West", () => {
+    expect(new Direction(WEST).turn(TURN_RIGHT).getDirection()).toBe(NORTH);
+    expect(new Direction(WEST).turn(TURN_LEFT).getDirection()).toBe(SOUTH);
+  });
+
+  it("should rotate from EAST", () => {
+    expect(new Direction(EAST).turn(TURN_RIGHT).getDirection()).toBe(SOUTH);
+    expect(new Direction(EAST).turn(TURN_LEFT).getDirection()).toBe(NORTH);
   });
 });

@@ -1,12 +1,20 @@
-const MarsRoverBuilder = require("./mars-rover-builder");
+const { NORTH, MOVE, TURN_RIGHT } = require("./constants");
+const Location = require("./location");
+const Direction = require("./direction");
+const MarsRover = require("./mars-rover");
 
 describe("MarsRover", () => {
-  it("should move in the specified direction", () => {
-    const rover = new MarsRoverBuilder()
-      .setGrid("5 5")
-      .setPosition("0 0 N")
-      .build();
+  it("should move in a specified direction", () => {
+    const grid = { x: 1, y: 1 };
+    const location = new Location(grid, { x: 0, y: 0 });
+    const direction = new Direction(NORTH);
 
-    expect(rover.sendCommands("RM").getLocation()).toBe("1 0 E");
+    const result = new MarsRover(location, direction)
+      .execute(MOVE)
+      .execute(TURN_RIGHT)
+      .execute(MOVE)
+      .getLocation();
+
+    expect(result).toBe("1 1 E");
   });
 });

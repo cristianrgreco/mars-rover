@@ -1,9 +1,9 @@
 module.exports = {
-  RIGHT: "R",
-  LEFT: "L",
-  MOVE: "M",
   NORTH: "N",
   SOUTH: "S",
   EAST: "E",
-  WEST: "W"
+  WEST: "W",
+  MOVE: "M",
+  TURN_LEFT: "L",
+  TURN_RIGHT: "R"
 };

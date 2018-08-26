@@ -1,7 +1,7 @@
 const chunk = require("./chunk");
 
 describe("chunk", () => {
-  it("should split an array into chunks", () => {
+  it("should return an array in chunks", () => {
     const array = [1, 2, 3, 4];
     const chunkSize = 2;
 

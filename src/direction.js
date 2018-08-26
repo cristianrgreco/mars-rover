@@ -1,23 +1,35 @@
-const { NORTH, SOUTH, EAST, WEST, LEFT, RIGHT } = require("./constants");
+const { NORTH, SOUTH, EAST, WEST, TURN_LEFT, TURN_RIGHT } = require("./constants");
 
 const STATE_MACHINE = {
   [NORTH]: {
-    [LEFT]: WEST,
-    [RIGHT]: EAST
+    [TURN_LEFT]: WEST,
+    [TURN_RIGHT]: EAST
   },
   [SOUTH]: {
-    [LEFT]: EAST,
-    [RIGHT]: WEST
+    [TURN_LEFT]: EAST,
+    [TURN_RIGHT]: WEST
   },
   [EAST]: {
-    [LEFT]: NORTH,
-    [RIGHT]: SOUTH
+    [TURN_LEFT]: NORTH,
+    [TURN_RIGHT]: SOUTH
   },
   [WEST]: {
-    [LEFT]: SOUTH,
-    [RIGHT]: NORTH
+    [TURN_LEFT]: SOUTH,
+    [TURN_RIGHT]: NORTH
   }
 };
 
-module.exports = (currentDirection, rotation) =>
-  STATE_MACHINE[currentDirection][rotation];
+module.exports = class Direction {
+  constructor(direction) {
+    this._direction = direction;
+  }
+
+  turn(rotation) {
+    const newDirection = STATE_MACHINE[this._direction][rotation];
+    return new Direction(newDirection);
+  }
+
+  getDirection() {
+    return this._direction;
+  }
+};
